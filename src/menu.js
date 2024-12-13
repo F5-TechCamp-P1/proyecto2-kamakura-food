@@ -7,6 +7,21 @@ import {products} from '../assets/data/data.js'
 import {filters} from '../assets/data/data.js'
 //console.log(products);
 
+let contenedorFiltros = document.getElementById('filters');
+
+function mostrarFiltros(listaFiltros){
+      contenedorFiltros.innerHTML = '';// Quita el elemto filtro vacio
+      listaFiltros.forEach(filter => { //Sirve para recorrer cada elemento de filters
+          let filtroSection = document.createElement('div');// Crea un boton
+          filtroSection.innerHTML = `
+          <button class="filter">${filter}</button>`; 
+      contenedorFiltros.appendChild(filtroSection);
+      });
+      }
+
+      mostrarFiltros(filters);
+     
+
 let contenedorProductos = document.getElementById('products'); //Acceso al contenedor de products del Html
 
 
@@ -35,3 +50,4 @@ mostrarProductos(products);
 /*document.addEventListener('DOMContentLoaded', () => {
    // mostrarProductos(products); // Mostrar todos los productos
 });*/
+
