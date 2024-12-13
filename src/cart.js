@@ -11,3 +11,21 @@ function conmutarCarrito (){
 };
 
 botonCarrito.addEventListener('click', conmutarCarrito);
+
+import {products} from "../assets/data/data.js";
+import {productoDiv, contenedorProductos} from "../src/menu.js";
+
+let botonAnadir = document.getElementsByClassName('add-button');
+let productoEnCarrito = document.getElementsByClassName('text-container');
+let platoAnadido = productoEnCarrito[0].getElementsByTagName('h3');
+let precioAnadido = productoEnCarrito[0].getElementsByTagName('h5');
+
+contenedorProductos.forEach(productoDiv => {
+    function anadirAlCarrito () {
+    platoAnadido[0].textContent = ;
+    precioAnadido[0].textContent = ;
+};
+
+});
+
+botonAnadir[0].addEventListener('click', anadirAlCarrito);

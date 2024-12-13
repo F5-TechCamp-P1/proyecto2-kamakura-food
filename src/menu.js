@@ -35,3 +35,5 @@ mostrarProductos(products);
 /*document.addEventListener('DOMContentLoaded', () => {
    // mostrarProductos(products); // Mostrar todos los productos
 });*/
+
+export {productoDiv, contenedorProductos}
