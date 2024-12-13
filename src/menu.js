@@ -10,8 +10,9 @@ import {filters} from '../assets/data/data.js'
 let contenedorProductos = document.getElementById('products'); //Acceso al contenedor de products del Html
 
 
-function mostrarProductos(ListaProductos) {  // Funcion para mostrar productos
-    ListaProductos.forEach(product => { //Sirve para recorrer cada elemento del array
+function mostrarProductos(listaProductos) { // Funcion para mostrar productos
+        contenedorProductos.innerHTML = '';
+        listaProductos.forEach(product => { //Sirve para recorrer cada elemento del array
         let productoDiv = document.createElement('div');// Crea el contenedor de cada prodcuto para que se muestre
         productoDiv.className = 'product-container';//className asigna el estilo ya asiganado para que se vea como en el video
 
@@ -28,8 +29,9 @@ function mostrarProductos(ListaProductos) {  // Funcion para mostrar productos
         contenedorProductos.appendChild(productoDiv); //Añade el div qdinamico que creamos  al contenedor principal
     });
 }
-
 // Mostrar los productos al cargar la página
-document.addEventListener('DOMContentLoaded', () => {
-    mostrarProductos(products); // Mostrar todos los productos
-});
+mostrarProductos(products);
+
+/*document.addEventListener('DOMContentLoaded', () => {
+   // mostrarProductos(products); // Mostrar todos los productos
+});*/
