@@ -12,6 +12,49 @@ function conmutarCarrito (){
 
 botonCarrito.addEventListener('click', conmutarCarrito);
 
+const productoEnCarrito = document.getElementsByClassName('cart-container');
+const todosLosProductosDelCarrito = document.getElementById('cart-products');
+const contenedorProductos = document.getElementById('products')
+
+let platosAnadidos = [];
+
+contenedorProductos.addEventListener('click', e => {
+    if (e.target.classList.contains('add-button')) {
+        const productoAlCarrito = e.target.parentElement.parentElement;
+        
+        const informacionDelPlato = {
+        cantidad: 1,
+        nombre: productoAlCarrito.querySelector('h3').textContent,
+        precio: productoAlCarrito.querySelector('h5').textContent,
+        }
+        
+        platosAnadidos = [...platosAnadidos, informacionDelPlato];
+
+    }
+
+});
+
+const mostrarHTLM = () => {
+    platosAnadidos.forEach(plato => {
+        const nombrePrecioContenedor = document.createElement('div');
+        nombrePrecioContenedor.className('text-container')
+
+        nombrePrecioContenedor.innerHTML = 
+                        <div class="text-container">
+                            <h3>${informacionDelPlato.nombre}</h3>
+                            <h5>`Precio ${informacionDelPlato.precio}`</h5>
+                        </div>
+        ;
+
+    productoEnCarrito.append(nombrePrecioContenedor);
+    })
+
+}
+
+
+
+/*  Esto no funciona
+
 import {products} from "../assets/data/data.js";
 import {productoDiv, contenedorProductos} from "../src/menu.js";
 
@@ -22,10 +65,11 @@ let precioAnadido = productoEnCarrito[0].getElementsByTagName('h5');
 
 contenedorProductos.forEach(productoDiv => {
     function anadirAlCarrito () {
-    platoAnadido[0].textContent = ;
-    precioAnadido[0].textContent = ;
-};
+        for (let opcionPlato of products) {
+            platoAnadido[0].textContent= opcionPlato.name;
+            precioAnadido[0].textContent = opcionPlato.price;
+            }
+    };
+}); 
 
-});
-
-botonAnadir[0].addEventListener('click', anadirAlCarrito);
+botonAnadir[0].addEventListener('click', anadirAlCarrito); */

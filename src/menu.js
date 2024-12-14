@@ -36,4 +36,4 @@ mostrarProductos(products);
    // mostrarProductos(products); // Mostrar todos los productos
 });*/
 
-export {productoDiv, contenedorProductos}
+//export {productoDiv, contenedorProductos}
