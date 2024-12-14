@@ -1,4 +1,5 @@
 //DEBE contener las funcionalidades del carrito de compras.
+//Codigo para mostrar u ocultar el carrito de compras
 let botonCarrito = document.getElementById('cart');
 let contenedorCarrito = document.getElementById('cart-container');
 
@@ -11,6 +12,8 @@ function conmutarCarrito (){
 };
 
 botonCarrito.addEventListener('click', conmutarCarrito);
+
+//Codigo para añadir productos (basado en video)
 
 const productoEnCarrito = document.getElementsByClassName('cart-container');
 const todosLosProductosDelCarrito = document.getElementById('cart-products');
@@ -55,8 +58,8 @@ const mostrarHTLM = () => {
 
 
 
-/*  Esto no funciona
-
+//Esto es un poco lo que había pensado inicialmente con Mabel pero no funciona
+/* 
 import {products} from "../assets/data/data.js";
 import {productoDiv, contenedorProductos} from "../src/menu.js";
 
