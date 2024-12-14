@@ -24,7 +24,7 @@ function rellenarPlantillaProductoEnCarrito(producto){
       let $precioProducto = $textContainer.getElementsByTagName("h5")[0];
  
       $nombreProducto.innerText = producto.name;
-      $precioProducto.innerText = producto.price + ' €';
+      $precioProducto.innerText = producto.price.toFixed(2) + ' €';
 }
 
 function buscarProductoPorId(id) {
