@@ -40,10 +40,10 @@ const mostrarHTLM = () => {
         nombrePrecioContenedor.className('text-container')
 
         nombrePrecioContenedor.innerHTML = 
-                        <div class="text-container">
+                        `<div class="text-container">
                             <h3>${informacionDelPlato.nombre}</h3>
-                            <h5>`Precio ${informacionDelPlato.precio}`</h5>
-                        </div>
+                            <h5>Precio ${informacionDelPlato.precio}</h5>
+                        </div>`
         ;
 
     productoEnCarrito.append(nombrePrecioContenedor);
