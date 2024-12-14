@@ -30,6 +30,8 @@ contenedorProductos.addEventListener('click', e => {
         
         platosAnadidos = [...platosAnadidos, informacionDelPlato];
 
+        mostrarHTLM();
+
     }
 
 });
