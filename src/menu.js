@@ -14,7 +14,7 @@ function mostrarFiltros(listaFiltros){
       listaFiltros.forEach(filter => { //Sirve para recorrer cada elemento de filters
           let filtroSection = document.createElement('div');// Crea un boton
           filtroSection.innerHTML = `
-          <button class="filter">${filter}</button>`; 
+          <button class="filter" data-category="${filter}">${filter}</button>`; 
       contenedorFiltros.appendChild(filtroSection);
       });
       }
@@ -46,6 +46,19 @@ function mostrarProductos(listaProductos) { // Funcion para mostrar productos
 }
 // Mostrar los productos al cargar la página
 mostrarProductos(products);
+
+contenedorFiltros.addEventListener('click', (aplicarFiltro) => {
+    if (aplicarFiltro.target.classList.contains('filter')) { // Verifica si el clic fue en un botón con clase "filter"
+        const categoriaSeleccionada = aplicarFiltro.target.getAttribute('data-category'); // Obtener la categoría
+        if (categoriaSeleccionada === 'todos') {
+            mostrarProductos(products); // Mostrar todos los productos si se selecciona "todos"
+        } else {
+            // Filtrar los productos por categoría
+            const productosFiltrados = products.filter(product => product.category === categoriaSeleccionada);
+            mostrarProductos(productosFiltrados); // Mostrar los productos filtrados
+        }
+    }
+});
 
 /*document.addEventListener('DOMContentLoaded', () => {
    // mostrarProductos(products); // Mostrar todos los productos
