@@ -39,6 +39,8 @@ contenedorProductos.addEventListener('click', e => {
 
 });
 
+//El error tiene que estar dentro de la funcion mostrarHTML() porque si comentamos la funcion y tmb comentamos su llamado, que está dentro del if, el codigo funciona: si ponemos console.log(platosAnadidos) dentro de la función if, veremos que en la consola aparece la información de los platos. Falla la parte de visualizarlos dentro del carrito; pero la interaccion con el menú esta bien.
+
 const mostrarHTLM = () => {
     platosAnadidos.forEach(plato => {
         const nombrePrecioContenedor = document.createElement('div');
