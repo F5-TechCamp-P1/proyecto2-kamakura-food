@@ -5,7 +5,7 @@
 import {products} from '../assets/data/data.js'
 import {filters} from '../assets/data/data.js'
 
-let $contenedorProductos = document.getElementById('products'); 
+let $contenedorProductos = document.getElementById('products');
 
 // Crea y añade un div dinamico al contenedor principal para mostrar todos los productos disponibles.
 
@@ -14,7 +14,7 @@ function mostrarProductos(listaProductos) {
         listaProductos.forEach(product => {
             let $productoDiv = document.createElement('div');
             $productoDiv.className = 'product-container';
-            $productoDiv.innerHTML = ` 
+            $productoDiv.innerHTML = `
                 <h3>${product.name}</h3>
                 <p>${product.description}</p>
                 <div class="price-container">
@@ -22,10 +22,30 @@ function mostrarProductos(listaProductos) {
                     <button class="add-button" data-id="${product.id}">Añadir</button>
                 </div>
             `;
-            $contenedorProductos.appendChild($productoDiv); 
+            $contenedorProductos.appendChild($productoDiv);
     });
 }
 
+$contenedorProductos.addEventListener('click', enviarProductoAlCarrito);
+
 document.addEventListener('DOMContentLoaded', () => {
-    mostrarProductos(products); 
+    mostrarProductos(products);
 });
+
+// Dar funcionalidad al botón Añadir para que mande los productos al carrito.
+
+function enviarProductoAlCarrito(evento) {
+    let $botonPulsado = evento.target;
+    if (!$botonPulsado.dataset.id) {
+        return;
+    }
+    let idProductoEvento = parseInt($botonPulsado.dataset.id);
+
+    const eventoProductoAnadido = new CustomEvent("productoAnadido", {
+        detail: { productId: idProductoEvento },
+        bubbles: true,
+        cancelable: true,
+    });
+
+    document.dispatchEvent(eventoProductoAnadido);
+}
