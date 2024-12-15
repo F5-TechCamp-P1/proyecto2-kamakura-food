@@ -39,21 +39,40 @@ contenedorProductos.addEventListener('click', e => {
 
 });
 
-//El error tiene que estar dentro de la funcion mostrarHTML() porque si comentamos la funcion y tmb comentamos su llamado, que está dentro del if, el codigo funciona: si ponemos console.log(platosAnadidos) dentro de la función if, veremos que en la consola aparece la información de los platos. Falla la parte de visualizarlos dentro del carrito; pero la interaccion con el menú esta bien.
-
 const mostrarHTLM = () => {
+    todosLosProductosDelCarrito.innerHTML = "";
+
     platosAnadidos.forEach(plato => {
         const nombrePrecioContenedor = document.createElement('div');
-        nombrePrecioContenedor.className('text-container')
+        nombrePrecioContenedor.className = 'text-container';
 
         nombrePrecioContenedor.innerHTML = 
                         `<div class="text-container">
-                            <h3>${informacionDelPlato.nombre}</h3>
-                            <h5>Precio ${informacionDelPlato.precio}</h5>
+                            <h3>${plato.nombre}</h3>
+                            <h5>Precio ${plato.precio}</h5>
                         </div>`
         ;
 
-    productoEnCarrito.append(nombrePrecioContenedor);
+        const cantidadContenedor = document.createElement('div'); 
+        cantidadContenedor.className = 'quantity-container'; 
+        cantidadContenedor.id = 'quantity'; 
+        cantidadContenedor.innerHTML = 
+                        `<button>+</button> 
+                        <p class="quantity">${plato.cantidad}</p> 
+                        <button>-</button>`
+        ; 
+        
+        const productoEnCarrito = document.createElement('div'); 
+        productoEnCarrito.className = 'cart-container'; 
+        productoEnCarrito.innerHTML = 
+                        `<button class="close-button">
+                        <img src="./assets/img/close.svg" alt="close">
+                        </button>`
+        ; 
+        
+        productoEnCarrito.appendChild(nombrePrecioContenedor); 
+        productoEnCarrito.appendChild(cantidadContenedor); 
+        todosLosProductosDelCarrito.appendChild(productoEnCarrito);
     })
 
 }
