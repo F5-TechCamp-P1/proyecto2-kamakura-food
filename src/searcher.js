@@ -6,7 +6,7 @@ let botonesFiltros = document.getElementsByClassName('filter');
 
 function filtrarRamen() { 
     let productosFiltrados = products.filter(product => product.category === "ramen"); 
-    mostrarProductos(productosFiltrados); 
+    mostrarProductos(productosFiltrados);
 };
 
 function filtrarSushi() { 
