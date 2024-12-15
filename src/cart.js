@@ -5,9 +5,9 @@ let botonCarrito = document.getElementById('cart');
 let contenedorCarrito = document.getElementById('cart-container');
 
 function conmutarCarrito (){
-      if (contenedorCarrito.style.display ==="none") {
+      if (contenedorCarrito.style.display === "none" || contenedorCarrito.style.display === "" ) {
       contenedorCarrito.style.display = "block"
-     } else { 
+     } else {
       contenedorCarrito.style.display = "none";
      }
 }
@@ -18,13 +18,13 @@ botonCarrito.addEventListener('click', conmutarCarrito);
 
 function rellenarPlantillaProductoEnCarrito(producto){
       let $contenedorProductosEnCarrito = document.getElementById("cart-products");
-      let $plantillaProductoEnCarrito = $contenedorProductosEnCarrito.getElementsByClassName("cart-container")[0]; 
+      let $plantillaProductoEnCarrito = $contenedorProductosEnCarrito.getElementsByClassName("cart-container")[0];
       let $textContainer = $plantillaProductoEnCarrito.getElementsByClassName("text-container")[0];
       let $nombreProducto = $textContainer.getElementsByTagName("h3")[0];
       let $precioProducto = $textContainer.getElementsByTagName("h5")[0];
- 
+
       $nombreProducto.innerText = producto.name;
-      $precioProducto.innerText = producto.price + ' €';
+      $precioProducto.innerText = producto.price.toFixed(2) + ' €';
 }
 
 function buscarProductoPorId(id) {
@@ -35,7 +35,7 @@ function buscarProductoPorId(id) {
                   return productoActual;
             }
       }
-      
+
       return {
             name: 'El producto no existe',
             price: 0,
