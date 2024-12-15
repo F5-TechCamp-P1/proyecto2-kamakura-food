@@ -1,13 +1,25 @@
-// DEBE imprimir en pantalla la información de filtros.
-
-// DEBE imprimir en pantalla los productos, con su Título, descripción y precio en € y botón de añadir.
-
 import {products} from '../assets/data/data.js'
 import {filters} from '../assets/data/data.js'
 
-let $contenedorProductos = document.getElementById('products');
+// DEBE imprimir en pantalla la información de filtros.
 
-// Crea y añade un div dinamico al contenedor principal para mostrar todos los productos disponibles.
+let contenedorFiltros = document.getElementById('filters');
+
+function mostrarFiltros(listaFiltros){
+      contenedorFiltros.innerHTML = '';
+      listaFiltros.forEach(filter => {
+          let filtroSection = document.createElement('div');
+          filtroSection.innerHTML = `
+          <button class="filter">${filter}</button>`;
+      contenedorFiltros.appendChild(filtroSection);
+      });
+      }
+
+      mostrarFiltros(filters);
+
+// DEBE imprimir en pantalla los productos, con su Título, descripción y precio en € y botón de añadir.
+
+let $contenedorProductos = document.getElementById('products');
 
 function mostrarProductos(listaProductos) {
         $contenedorProductos.innerHTML = '';
