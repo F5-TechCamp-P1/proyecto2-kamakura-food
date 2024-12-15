@@ -1,5 +1,5 @@
-import {products} from '../assets/data/data.js'
-import {filters} from '../assets/data/data.js'
+import {products} from '../assets/data/data.js';
+import {filters} from '../assets/data/data.js';
 
 // DEBE imprimir en pantalla la información de filtros.
 
@@ -61,3 +61,4 @@ function enviarProductoAlCarrito(evento) {
 
     document.dispatchEvent(eventoProductoAnadido);
 }
+export {mostrarProductos};

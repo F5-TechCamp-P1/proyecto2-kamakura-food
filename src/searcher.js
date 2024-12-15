@@ -1,27 +1,28 @@
-//DEBE buscar los productos por los filtros
-import { mostrarProductos } from "./menu.js";
-import {products} from '../assets/data/data.js'
+import {mostrarProductos} from "./menu.js";
+import {products} from '../assets/data/data.js';
+
+// DEBE buscar los productos por los filtros.
 
 let botonesFiltros = document.getElementsByClassName('filter');
 
-function filtrarRamen() { 
-    let productosFiltrados = products.filter(product => product.category === "ramen"); 
+function filtrarRamen() {
+    let productosFiltrados = products.filter(product => product.category === "ramen");
     mostrarProductos(productosFiltrados);
 };
 
-function filtrarSushi() { 
-    let productosFiltrados = products.filter(product => product.category === "sushi"); 
-    mostrarProductos(productosFiltrados); 
+function filtrarSushi() {
+    let productosFiltrados = products.filter(product => product.category === "sushi");
+    mostrarProductos(productosFiltrados);
 };
 
-function filtrarEntradas() { 
-    let productosFiltrados = products.filter(product => product.category === "entradas"); 
-    mostrarProductos(productosFiltrados); 
+function filtrarEntradas() {
+    let productosFiltrados = products.filter(product => product.category === "entradas");
+    mostrarProductos(productosFiltrados);
 };
 
-function filtrarPostres() { 
-    let productosFiltrados = products.filter(product => product.category === "postres"); 
-    mostrarProductos(productosFiltrados); 
+function filtrarPostres() {
+    let productosFiltrados = products.filter(product => product.category === "postres");
+    mostrarProductos(productosFiltrados);
 };
 
 function filtrarTodos () {
