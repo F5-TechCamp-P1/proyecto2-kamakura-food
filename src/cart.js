@@ -4,6 +4,7 @@ import { products } from "../assets/data/data.js";
 let $botonCarrito = document.getElementById('cart');
 let $contenedorCarrito = document.getElementById('cart-container');
 
+
 function conmutarCarrito (){
       if ($contenedorCarrito.style.display === "none" || $contenedorCarrito.style.display === "" ) {
       $contenedorCarrito.style.display = "block"
@@ -18,12 +19,12 @@ $botonCarrito.addEventListener('click', conmutarCarrito);
 
 function rellenarPlantillaProductoEnCarrito(producto){
       let $contenedorProductosEnCarrito = document.getElementById("cart-products");
-      let $plantillaProductoEnCarrito = $contenedorProductosEnCarrito.getElementsByClassName("cart-container")[0];
-      let $textContainer = $plantillaProductoEnCarrito.getElementsByClassName("text-container")[0];
-
+   //Revisar desde aqui /////
+      let $nuevoProductoEnCarrito = document.createElement("div");
+      $nuevoProductoEnCarrito.className = "cart-container";
       $contenedorCarrito.style.display = "block"
 
-      $plantillaProductoEnCarrito.innerHTML = `
+      $nuevoProductoEnCarrito.innerHTML = `
             <button class="close-button"><img src="./assets/img/close.svg" alt="close"></button>
             <div class="text-container">
                   <h3>${producto.name}</h3>
@@ -33,7 +34,9 @@ function rellenarPlantillaProductoEnCarrito(producto){
                   <button>+</button>
                   <p class="quantity">1</p>
                   <button>-</button>
-            </div>`
+            </div>`;
+
+      $contenedorProductosEnCarrito.appendChild($nuevoProductoEnCarrito);
 }
 
 function buscarProductoPorId(id) {
