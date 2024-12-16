@@ -51,3 +51,14 @@ function manejadorDeEventoProductoAnadido(evento) {
 
 document.addEventListener('productoAnadido', manejadorDeEventoProductoAnadido);
 
+
+
+
+//Eliminar Producto añadido del carrito 
+
+document.getElementById("cart-products").addEventListener("click", (evento) => {
+      if (evento.target.closest(".close-button")) {
+          let $productoDiv = evento.target.closest(".cart-container");
+          $productoDiv.remove(); // Elimina solo este producto
+            }
+  }); 
