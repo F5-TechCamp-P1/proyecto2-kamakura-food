@@ -60,3 +60,25 @@ function manejadorDeEventoProductoAnadido(evento) {
 
 document.addEventListener('productoAnadido', manejadorDeEventoProductoAnadido);
 
+//Disminuye la cantidad deproductos en el carrito
+
+let $divDeBotonesDeCantidad = document.getElementById('quantity');//Acceso al div que tiene los botones
+let $botonesDeCantidad = $divDeBotonesDeCantidad.getElementsByTagName('button');//Acceso a los botones
+let $botonDisminuir = $botonesDeCantidad[1];//Acceso al segundo
+let $conteoDeCantidad = $divDeBotonesDeCantidad.getElementsByTagName('p')//Acceso al segundo boton que es el de resta
+
+let cantidad = 0
+
+function disminuir () {
+      cantidad--;
+      $conteoDeCantidad[0].textContent = cantidad;
+};
+
+/* function disminuir () {
+      if (cantidad > 0) {
+      cantidad--;
+      $conteoDeCantidad[0].textContent = cantidad;
+};
+} */
+
+$botonDisminuir.addEventListener('click', disminuir)
