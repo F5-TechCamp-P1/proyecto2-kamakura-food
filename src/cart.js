@@ -67,13 +67,13 @@ let $botonesDeCantidad = $divDeBotonesDeCantidad.getElementsByTagName('button');
 let $botonDisminuir = $botonesDeCantidad[1];//Acceso al segundo
 let $conteoDeCantidad = $divDeBotonesDeCantidad.getElementsByTagName('p')//Acceso al segundo boton que es el de resta
 
-let cantidad = 0
+let cantidad = 1
 
 function disminuir () {
       cantidad--;
       $conteoDeCantidad[0].textContent = cantidad;
 };
-
+ //Así tiene que ser la funcion pero para poder probar tdv permitimos los numeros negativos
 /* function disminuir () {
       if (cantidad > 0) {
       cantidad--;
