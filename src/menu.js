@@ -53,12 +53,12 @@ function enviarProductoAlCarrito(evento) {
     }
     let idProductoEvento = parseInt($botonPulsado.dataset.id);
 
-    const eventoProductoAnadido = new CustomEvent("productoAnadido", {
-        detail: { productId: idProductoEvento },
+    const eventoCarritoModificado = new CustomEvent("carritoModificado", {
+        detail: { productId: idProductoEvento, quantity: 1 },
         bubbles: true,
         cancelable: true,
     });
 
-    document.dispatchEvent(eventoProductoAnadido);
+    document.dispatchEvent(eventoCarritoModificado);
 }
 export {mostrarProductos};
