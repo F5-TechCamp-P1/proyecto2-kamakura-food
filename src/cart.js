@@ -16,24 +16,25 @@ $botonCarrito.addEventListener('click', conmutarCarrito);
 
 // Añade pedidos de productos al carrito de compras.
 
-function rellenarPlantillaProductoEnCarrito(producto){
+function insertarProductoEnCarrito(producto, cantidad){
       let $contenedorProductosEnCarrito = document.getElementById("cart-products");
-      let $plantillaProductoEnCarrito = $contenedorProductosEnCarrito.getElementsByClassName("cart-container")[0];
-      let $textContainer = $plantillaProductoEnCarrito.getElementsByClassName("text-container")[0];
+      let $plantillaProductoEnCarrito = document.createElement('div');
+      $plantillaProductoEnCarrito.className = 'cart-container';
 
       $contenedorCarrito.style.display = "block"
 
       $plantillaProductoEnCarrito.innerHTML = `
             <button class="close-button"><img src="./assets/img/close.svg" alt="close"></button>
-            <div class="text-container">
+            <div class="text-container" data-id="${producto.id}">
                   <h3>${producto.name}</h3>
                   <h5>${producto.price.toFixed(2)} €</h5>
             </div>
             <div class="quantity-container" id="quantity">
                   <button>+</button>
-                  <p class="quantity">1</p>
+                  <p class="quantity">${cantidad}</p>
                   <button>-</button>
             </div>`
+      $contenedorProductosEnCarrito.append($plantillaProductoEnCarrito);
 }
 
 function buscarProductoPorId(id) {
@@ -51,23 +52,34 @@ function buscarProductoPorId(id) {
       }
 }
 
-function manejadorDeEventoProductoAnadido(evento) {
+function manejadorDeEventoCarritoModificado(evento) {
+      let cantidad = evento.detail.quantity;
       let idProductoEvento = evento.detail.productId;
       let producto = buscarProductoPorId(idProductoEvento);
+      let $listaProductosCarrito = $contenedorCarrito.querySelectorAll("[data-id]");
 
-      rellenarPlantillaProductoEnCarrito(producto);
+      for (let i = 0; i < $listaProductosCarrito.length; i++) {
+            let $productoActual = $listaProductosCarrito[i];
+
+            if (idProductoEvento === parseInt($productoActual.dataset.id)) {
+                  return;
+            }
+      }
+
+      insertarProductoEnCarrito(producto, cantidad);
 }
 
-document.addEventListener('productoAnadido', manejadorDeEventoProductoAnadido);
+document.addEventListener('carritoModificado', manejadorDeEventoCarritoModificado);
 
-
-
-
-//Eliminar Producto añadido del carrito 
+// Eliminar Producto añadido del carrito
 
 document.getElementById("cart-products").addEventListener("click", (evento) => {
       if (evento.target.closest(".close-button")) {
           let $productoDiv = evento.target.closest(".cart-container");
           $productoDiv.remove(); // Elimina solo este producto
             }
-  }); 
+  });
+
+// Aumentar el precio mostrado en la ficha del carrito, multiplicando el precio original que viene de data por la cantidad que se muestre en el elemento quantity
+
+
