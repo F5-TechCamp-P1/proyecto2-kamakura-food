@@ -27,7 +27,7 @@ function insertarProductoEnCarrito(producto, cantidad){
             <button class="close-button"><img src="./assets/img/close.svg" alt="close"></button>
             <div class="text-container" data-id="${producto.id}">
                   <h3>${producto.name}</h3>
-                  <h5>${producto.price.toFixed(2)} €</h5>
+                  <h5 data-price="${producto.price}">${producto.price.toFixed(2)} €</h5>
             </div>
             <div class="quantity-container" id="quantity">
                   <button>+</button>
@@ -90,6 +90,9 @@ document.getElementById("cart-products").addEventListener("click", (evento) => {
       
       let $cantidad = $productoDiv.querySelector(".quantity"); 
       let cantidadActual = parseInt($cantidad.textContent);
+      let $precioElemento = $productoDiv.querySelector(".text-container h5");
+      let precioOriginal = parseFloat($precioElemento.dataset.price);
+    
  
        if ($boton.textContent === "+") {
           cantidadActual++; 
@@ -103,10 +106,9 @@ document.getElementById("cart-products").addEventListener("click", (evento) => {
            } 
 
        }
-       
-                
+       $cantidad.textContent = cantidadActual;
+       let subtotal = cantidadActual * precioOriginal;
+       $precioElemento.textContent = `${subtotal.toFixed(2)} €`;
+      })         
       
-      $cantidad.textContent = cantidadActual; 
- });
-  
-      
+   
