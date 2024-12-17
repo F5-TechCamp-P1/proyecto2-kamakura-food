@@ -83,3 +83,30 @@ document.getElementById("cart-products").addEventListener("click", (evento) => {
 // Aumentar el precio mostrado en la ficha del carrito, multiplicando el precio original que viene de data por la cantidad que se muestre en el elemento quantity
 
 
+// Evento delegador para los botones "+" y "-"
+document.getElementById("cart-products").addEventListener("click", (evento) => {
+      const $boton = evento.target; 
+      let $productoDiv = $boton.closest(".cart-container");
+      
+      let $cantidad = $productoDiv.querySelector(".quantity"); 
+      let cantidadActual = parseInt($cantidad.textContent);
+ 
+       if ($boton.textContent === "+") {
+          cantidadActual++; 
+      
+       } else if ($boton.textContent === "-"){
+           if (cantidadActual >1){
+            cantidadActual--;
+            
+           } else if (cantidadActual===1){
+            $productoDiv.remove();
+           } 
+
+       }
+       
+                
+      
+      $cantidad.textContent = cantidadActual; 
+ });
+  
+      

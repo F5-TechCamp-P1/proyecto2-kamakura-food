@@ -62,3 +62,6 @@ function enviarProductoAlCarrito(evento) {
     document.dispatchEvent(eventoCarritoModificado);
 }
 export {mostrarProductos};
+
+// DEBE contener las funcionalidades del carrito de compras.
+
