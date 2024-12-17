@@ -34,7 +34,7 @@ function rellenarPlantillaProductoEnCarrito(producto){
                   <p class="quantity">1</p>
                   <button>-</button>
             </div>`
-}
+      }
 
 function buscarProductoPorId(id) {
       for (let i = 0; i < products.length; i++) {
@@ -62,16 +62,19 @@ document.addEventListener('productoAnadido', manejadorDeEventoProductoAnadido);
 
 //Disminuye la cantidad deproductos en el carrito
 
+function modificarCantidadEnPlantillaProductoEnCarrito(nuevoValor) {
 let $divDeBotonesDeCantidad = document.getElementById('quantity');//Acceso al div que tiene los botones
-let $botonesDeCantidad = $divDeBotonesDeCantidad.getElementsByTagName('button');//Acceso a los botones
-let $botonDisminuir = $botonesDeCantidad[1];//Acceso al segundo
 let $conteoDeCantidad = $divDeBotonesDeCantidad.getElementsByTagName('p')//Acceso al segundo boton que es el de resta
 
-let cantidad = 1
+$conteoDeCantidad[0].textContent = nuevoValor;
+}
 
-function disminuir () {
+
+function disminuir() {
+      let cantidad = 1
       cantidad--;
-      $conteoDeCantidad[0].textContent = cantidad;
+      nuevoValor = cantidad;
+      modificarCantidadEnPlantillaProductoEnCarrito(nuevoValor)
 };
  //Así tiene que ser la funcion pero para poder probar tdv permitimos los numeros negativos
 /* function disminuir () {
@@ -81,4 +84,7 @@ function disminuir () {
 };
 } */
 
+let $divDeBotonesDeCantidad = document.getElementById('quantity');//Acceso al div que tiene los botones
+let $botonesDeCantidad = $divDeBotonesDeCantidad.getElementsByTagName('button');//Acceso a los botones
+let $botonDisminuir = $botonesDeCantidad[1];
 $botonDisminuir.addEventListener('click', disminuir)
