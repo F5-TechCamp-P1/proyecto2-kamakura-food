@@ -20,6 +20,7 @@ function rellenarPlantillaProductoEnCarrito(producto){
       let $contenedorProductosEnCarrito = document.getElementById("cart-products");
       let $plantillaProductoEnCarrito = $contenedorProductosEnCarrito.getElementsByClassName("cart-container")[0];
       let $textContainer = $plantillaProductoEnCarrito.getElementsByClassName("text-container")[0];
+      
 
       $contenedorCarrito.style.display = "block"
 
@@ -87,4 +88,5 @@ function disminuir() {
 let $divDeBotonesDeCantidad = document.getElementById('quantity');//Acceso al div que tiene los botones
 let $botonesDeCantidad = $divDeBotonesDeCantidad.getElementsByTagName('button');//Acceso a los botones
 let $botonDisminuir = $botonesDeCantidad[1];
+
 $botonDisminuir.addEventListener('click', disminuir)
