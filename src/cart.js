@@ -35,6 +35,7 @@ function insertarProductoEnCarrito(producto, cantidad){
                   <button>-</button>
             </div>`
       $contenedorProductosEnCarrito.append($plantillaProductoEnCarrito);
+      calcularTotal();
 }
 
 function buscarProductoPorId(id) {
@@ -67,9 +68,28 @@ function manejadorDeEventoCarritoModificado(evento) {
       }
 
       insertarProductoEnCarrito(producto, cantidad);
+      
+      for (let i = 0; i < $listaProductosCarrito.length; i++) {
+        let subtotalParaSumar = producto.price[i]
+      }
+      
+      
 }
 
 document.addEventListener('carritoModificado', manejadorDeEventoCarritoModificado);
+
+//Calcular total
+
+function calcularTotal() { 
+      let total = 0; 
+      document.querySelectorAll(".cart-container").forEach($productoDiv => { 
+            let subtotal = parseFloat($productoDiv.querySelector("[data-price]").textContent); 
+            console.log(subtotal);
+            total += subtotal; 
+}); 
+
+document.getElementById('cart-total').textContent = `Total: ${total.toFixed(2)} €`;
+}
 
 // Eliminar Producto añadido del carrito
 
@@ -77,7 +97,9 @@ document.getElementById("cart-products").addEventListener("click", (evento) => {
       if (evento.target.closest(".close-button")) {
           let $productoDiv = evento.target.closest(".cart-container");
           $productoDiv.remove(); // Elimina solo este producto
-            }
+      
+          calcularTotal();
+      }
   });
 
 // Aumentar el precio mostrado en la ficha del carrito, multiplicando el precio original que viene de data por la cantidad que se muestre en el elemento quantity
@@ -106,9 +128,12 @@ document.getElementById("cart-products").addEventListener("click", (evento) => {
            } 
 
        }
+      
        $cantidad.textContent = cantidadActual;
        let subtotal = cantidadActual * precioOriginal;
        $precioElemento.textContent = `${subtotal.toFixed(2)} €`;
+
+       calcularTotal();
+
+    
       })         
-      
-   
