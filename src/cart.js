@@ -1,7 +1,6 @@
 // DEBE contener las funcionalidades del carrito de compras.
 import { products } from "../assets/data/data.js";
 
-let $botonCarrito = document.getElementById('cart');
 let $contenedorCarrito = document.getElementById('cart-container');
 let precioTotal = 0;
 
@@ -10,7 +9,7 @@ export function actualizarPrecioTotal(precio) {
     precioTotalLabel.innerHTML = `Total: ${precio.toFixed(2)} €`;
 }
 
-function conmutarCarrito (){
+export function conmutarCarrito (){
       if ($contenedorCarrito.style.display === "none" || $contenedorCarrito.style.display === "" ) {
       $contenedorCarrito.style.display = "block"
      } else {
@@ -18,7 +17,7 @@ function conmutarCarrito (){
      }
 }
 
-$botonCarrito.addEventListener('click', conmutarCarrito);
+// $botonCarrito.addEventListener('click', conmutarCarrito);
 
 // Añade pedidos de productos al carrito de compras.
 
@@ -82,13 +81,13 @@ document.addEventListener('carritoModificado', manejadorDeEventoCarritoModificad
 
 // Eliminar Producto añadido del carrito
 document.getElementById("cart-products").addEventListener("click", (evento) => {
-      
+
       if (evento.target.closest(".close-button")) {
             let $productoDiv = evento.target.closest(".cart-container");
             precioTotal = precioTotal -
-            (parseFloat($productoDiv.querySelector(".product-price").dataset.price) * 
+            (parseFloat($productoDiv.querySelector(".product-price").dataset.price) *
             (parseFloat($productoDiv.querySelector(".quantity").textContent)));
-        
+
             actualizarPrecioTotal(precioTotal);
             $productoDiv.remove(); // Elimina solo este producto
       }
@@ -99,37 +98,37 @@ document.getElementById("cart-products").addEventListener("click", (evento) => {
 
 // Evento delegador para los botones "+" y "-"
 document.getElementById("cart-products").addEventListener("click", (evento) => {
-      const $boton = evento.target; 
+      const $boton = evento.target;
       let $productoDiv = $boton.closest(".cart-container");
-      
-      let $cantidad = $productoDiv.querySelector(".quantity"); 
+
+      let $cantidad = $productoDiv.querySelector(".quantity");
       let cantidadActual = parseInt($cantidad.textContent);
       let $precioElemento = $productoDiv.querySelector(".text-container h5");
       let precioOriginal = parseFloat($precioElemento.dataset.price);
-    
- 
+
+
        if ($boton.textContent === "+") {
-             cantidadActual++; 
+             cantidadActual++;
              precioTotal = precioTotal + precioOriginal;
              actualizarPrecioTotal(precioTotal);
-      
+
        } else if ($boton.textContent === "-"){
            if (cantidadActual >1){
             cantidadActual--;
             precioTotal = precioTotal - precioOriginal;
             actualizarPrecioTotal(precioTotal);
-            
+
            } else if (cantidadActual===1){
             $productoDiv.remove();
             precioTotal = precioTotal - precioOriginal;
             actualizarPrecioTotal(precioTotal);
 
-           } 
+           }
 
        }
        $cantidad.textContent = cantidadActual;
        let subtotal = cantidadActual * precioOriginal;
        $precioElemento.textContent = `${subtotal.toFixed(2)} €`;
-      })         
-      
+      })
+
 
