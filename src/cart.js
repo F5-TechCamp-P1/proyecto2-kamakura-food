@@ -111,4 +111,4 @@ document.getElementById("cart-products").addEventListener("click", (evento) => {
        $precioElemento.textContent = `${subtotal.toFixed(2)} €`;
       })         
       
-   
+    
