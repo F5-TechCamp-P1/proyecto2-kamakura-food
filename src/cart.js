@@ -1,10 +1,14 @@
 // DEBE contener las funcionalidades del carrito de compras.
 import { products } from "../assets/data/data.js";
-import {actualizarPrecioTotal} from './receipt.js';
 
 let $botonCarrito = document.getElementById('cart');
 let $contenedorCarrito = document.getElementById('cart-container');
 let precioTotal = 0;
+
+let precioTotalLabel = document.getElementById("cart-total");
+export function actualizarPrecioTotal(precio) {
+    precioTotalLabel.innerHTML = `Total: ${precio.toFixed(2)} €`;
+}
 
 function conmutarCarrito (){
       if ($contenedorCarrito.style.display === "none" || $contenedorCarrito.style.display === "" ) {
