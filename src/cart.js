@@ -3,6 +3,12 @@ import { products } from "../assets/data/data.js";
 
 let $botonCarrito = document.getElementById('cart');
 let $contenedorCarrito = document.getElementById('cart-container');
+let precioTotal = 0;
+
+let precioTotalLabel = document.getElementById("cart-total");
+export function actualizarPrecioTotal(precio) {
+    precioTotalLabel.innerHTML = `Total: ${precio.toFixed(2)} €`;
+}
 
 function conmutarCarrito (){
       if ($contenedorCarrito.style.display === "none" || $contenedorCarrito.style.display === "" ) {
@@ -21,13 +27,15 @@ function insertarProductoEnCarrito(producto, cantidad){
       let $plantillaProductoEnCarrito = document.createElement('div');
       $plantillaProductoEnCarrito.className = 'cart-container';
 
-      $contenedorCarrito.style.display = "block"
+      $contenedorCarrito.style.display = "block";
+      precioTotal = precioTotal + (producto.price);
+      actualizarPrecioTotal(precioTotal);
 
       $plantillaProductoEnCarrito.innerHTML = `
             <button class="close-button"><img src="./assets/img/close.svg" alt="close"></button>
             <div class="text-container" data-id="${producto.id}">
                   <h3>${producto.name}</h3>
-                  <h5 data-price="${producto.price}">${producto.price.toFixed(2)} €</h5>
+                  <h5 data-price="${producto.price}" class="product-price">${producto.price.toFixed(2)} €</h5>
             </div>
             <div class="quantity-container" id="quantity">
                   <button>+</button>
@@ -35,6 +43,7 @@ function insertarProductoEnCarrito(producto, cantidad){
                   <button>-</button>
             </div>`
       $contenedorProductosEnCarrito.append($plantillaProductoEnCarrito);
+
 }
 
 function buscarProductoPorId(id) {
@@ -72,12 +81,17 @@ function manejadorDeEventoCarritoModificado(evento) {
 document.addEventListener('carritoModificado', manejadorDeEventoCarritoModificado);
 
 // Eliminar Producto añadido del carrito
-
 document.getElementById("cart-products").addEventListener("click", (evento) => {
+      
       if (evento.target.closest(".close-button")) {
-          let $productoDiv = evento.target.closest(".cart-container");
-          $productoDiv.remove(); // Elimina solo este producto
-            }
+            let $productoDiv = evento.target.closest(".cart-container");
+            precioTotal = precioTotal -
+            (parseFloat($productoDiv.querySelector(".product-price").dataset.price) * 
+            (parseFloat($productoDiv.querySelector(".quantity").textContent)));
+        
+            actualizarPrecioTotal(precioTotal);
+            $productoDiv.remove(); // Elimina solo este producto
+      }
   });
 
 // Aumentar el precio mostrado en la ficha del carrito, multiplicando el precio original que viene de data por la cantidad que se muestre en el elemento quantity
@@ -95,14 +109,21 @@ document.getElementById("cart-products").addEventListener("click", (evento) => {
     
  
        if ($boton.textContent === "+") {
-          cantidadActual++; 
+             cantidadActual++; 
+             precioTotal = precioTotal + precioOriginal;
+             actualizarPrecioTotal(precioTotal);
       
        } else if ($boton.textContent === "-"){
            if (cantidadActual >1){
             cantidadActual--;
+            precioTotal = precioTotal - precioOriginal;
+            actualizarPrecioTotal(precioTotal);
             
            } else if (cantidadActual===1){
             $productoDiv.remove();
+            precioTotal = precioTotal - precioOriginal;
+            actualizarPrecioTotal(precioTotal);
+
            } 
 
        }
@@ -111,4 +132,4 @@ document.getElementById("cart-products").addEventListener("click", (evento) => {
        $precioElemento.textContent = `${subtotal.toFixed(2)} €`;
       })         
       
-   
+
