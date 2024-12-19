@@ -15,7 +15,7 @@ function recogerInfoParaRecibo(){
                         <p>Cantidad: 1</p>
                         <h5>Subtotal €</h5>
                     </div>`; //No sé cómo recuperar los valores
-    $contenedorRecibo.appendChild($productoRecibo);
+    $contenedorRecibo.appendChild($productoRecibo); 
 
     let $totalRecibo = document.getElementById('receipt-total');
     $totalRecibo.textContent = //No sé cómo recuperar los valores ;
@@ -24,11 +24,11 @@ function recogerInfoParaRecibo(){
 
 };
 
-document.addEventListener('carritoModificado', recogerInfoParaRecibo);
+document.addEventListener('carritoModificado', recogerInfoParaRecibo); 
 
-//mostrar recibo
+//mostrar recibo (funciona, pero hay que comentar la funcion anterior)
 
-function mostrarRecibo(){
+function conmutarRecibo(){
     if ($contenedorRecibo.style.display === "none" || $contenedorRecibo.style.display === "" ) {
         $contenedorRecibo.style.display = "block"
        } else {
@@ -36,4 +36,4 @@ function mostrarRecibo(){
        }
 }
 
-$botonVerRecibo.addEventListener('click', mostrarRecibo)
+$botonVerRecibo.addEventListener('click', conmutarRecibo)
