@@ -21,8 +21,8 @@ function mostrarFiltros(listaFiltros){
 
 let $contenedorProductos = document.getElementById('products');
 
-function mostrarProductos(listaProductos) {
-        $contenedorProductos.innerHTML = '';
+ export function mostrarProductos(listaProductos, contenedorProductos) {
+        contenedorProductos.innerHTML = '';
         listaProductos.forEach(product => {
             let $productoDiv = document.createElement('div');
             $productoDiv.className = 'product-container';
@@ -34,14 +34,14 @@ function mostrarProductos(listaProductos) {
                     <button class="add-button" data-id="${product.id}">Añadir</button>
                 </div>
             `;
-            $contenedorProductos.appendChild($productoDiv);
+            contenedorProductos.appendChild($productoDiv);
     });
 }
 
 $contenedorProductos.addEventListener('click', enviarProductoAlCarrito);
 
 document.addEventListener('DOMContentLoaded', () => {
-    mostrarProductos(products);
+    mostrarProductos(products, $contenedorProductos);
 });
 
 // Dar funcionalidad al botón Añadir para que mande los productos al carrito.
