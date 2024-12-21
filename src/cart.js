@@ -93,7 +93,8 @@ document.getElementById("cart-products").addEventListener("click", (evento) => {
             (parseFloat($productoDiv.querySelector(".quantity").textContent)));
 
             actualizarPrecioTotal(precioTotal);
-            $productoDiv.remove(); // Elimina solo este producto
+            $productoDiv.remove();
+            recogerInfoParaRecibo(); // Elimina solo este producto
       }
   });
 
