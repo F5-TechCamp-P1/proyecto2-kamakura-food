@@ -27,7 +27,7 @@ The web page is divided into the following sections:
  
 ## Screenshot 
 
-![Image text] file:///C:/Users/lorag/Downloads/KamakuraFood-web.pdf 
+![Page site photo] (file:///C:/Users/lorag/Downloads/KamakuraFood-web.pdf) 
 
 
 ### Technologies 
