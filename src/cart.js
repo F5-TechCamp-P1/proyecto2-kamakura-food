@@ -1,5 +1,6 @@
 // DEBE contener las funcionalidades del carrito de compras.
 import { products } from "../assets/data/data.js";
+import { recogerInfoParaRecibo } from "./receipt.js";
 
 let $botonCarrito = document.getElementById('cart');
 let $contenedorCarrito = document.getElementById('cart-container');
@@ -35,6 +36,7 @@ function insertarProductoEnCarrito(producto, cantidad){
                   <button>-</button>
             </div>`
       $contenedorProductosEnCarrito.append($plantillaProductoEnCarrito);
+      recogerInfoParaRecibo();
 }
 
 function buscarProductoPorId(id) {

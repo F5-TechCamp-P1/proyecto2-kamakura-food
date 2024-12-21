@@ -1,32 +1,34 @@
 //Aquí intenta poner las funcionalidades del recibo
 //recoger los datos del carrito en el recibo
-let $contenedorRecibo = document.getElementById('receipt-container');
-let $botonVerRecibo = document.getElementById('proceedPay-button');
+let $contenedorRecibo = document.getElementById('receipt-container'); 
 
-function recogerInfoParaRecibo(){
-    $contenedorRecibo.innerHTML = " ";
+function recogerInfoParaRecibo() { 
+      $contenedorRecibo.innerHTML = ""; 
+      let productosEnCarrito = document.querySelectorAll('.cart-container'); 
+      productosEnCarrito.forEach(producto => { 
+            let nombre = producto.querySelector('h3').textContent; 
+            let cantidad = producto.querySelector('.quantity').textContent; 
+            let subtotal = producto.querySelector('h5').textContent; 
+            
+            let $productoRecibo = document.createElement('div'); 
+            $productoRecibo.className = 'receipt-product'; 
+            $productoRecibo.innerHTML = ` <h3>${nombre}</h3> 
+                                          <div class="receipt-price"> 
+                                                <p>Cantidad: ${cantidad}</p> 
+                                                <h5>Subtotal: ${subtotal}</h5> 
+                                          </div>`; 
+            $contenedorRecibo.appendChild($productoRecibo); });
 
-    //Sé que acá tengo que hacer un forEach... algo así como: $plantillaProductoEnCarrito.forEach(plantilla => {
-    let $productoRecibo = document.createElement('div');
-    $productoRecibo.className = 'receipt-product';
-    $productoRecibo.className.innerHTML =
-                    `<h3>Título</h3>
-                    <div class="receipt-price">
-                        <p>Cantidad: 1</p>
-                        <h5>Subtotal €</h5>
-                    </div>`; //No sé cómo recuperar los valores
-    $contenedorRecibo.appendChild($productoRecibo); 
-
+    /* let total = 0;
     let $totalRecibo = document.getElementById('receipt-total');
-    $totalRecibo.textContent = //No sé cómo recuperar los valores ;
-
-    //});
+    $totalRecibo.textContent = */ //No sé cómo recuperar los valores ;
 
 };
 
-document.addEventListener('carritoModificado', recogerInfoParaRecibo); 
+document.getElementById("cart-products").addEventListener("click", (evento) => { if (evento.target.closest(".close-button") || evento.target.textContent === "+" || evento.target.textContent === "-") { recogerInfoParaRecibo(); } });
 
 //mostrar recibo (funciona, pero hay que comentar la funcion anterior)
+let $botonVerRecibo = document.getElementById('proceedPay-button');
 
 function conmutarRecibo(){
     if ($contenedorRecibo.style.display === "none" || $contenedorRecibo.style.display === "" ) {
@@ -36,4 +38,7 @@ function conmutarRecibo(){
        }
 }
 
-$botonVerRecibo.addEventListener('click', conmutarRecibo)
+$botonVerRecibo.addEventListener('click', conmutarRecibo);
+
+export {recogerInfoParaRecibo};
+
