@@ -19,10 +19,11 @@ function recogerInfoParaRecibo() {
                                           </div>`; 
             $contenedorRecibo.appendChild($productoRecibo); });
 
-    /* let total = 0;
-    let $totalRecibo = document.getElementById('receipt-total');
-    $totalRecibo.textContent = */ //No sé cómo recuperar los valores ;
-
+    let totalEnCarrito = document.getElementById('cart-total').textContent;
+    let $totalRecibo = document.createElement('h3')
+    $totalRecibo.id = 'receipt-total';
+    $totalRecibo.innerHTML = `<p>${totalEnCarrito}</p>`;    
+    $contenedorRecibo.appendChild($totalRecibo);
 };
 
 document.getElementById("cart-products").addEventListener("click", (evento) => { if (evento.target.closest(".close-button") || evento.target.textContent === "+" || evento.target.textContent === "-") { recogerInfoParaRecibo(); } });

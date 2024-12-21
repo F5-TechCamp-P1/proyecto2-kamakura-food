@@ -8,6 +8,7 @@ let precioTotal = 0;
 let precioTotalLabel = document.getElementById("cart-total");
 export function actualizarPrecioTotal(precio) {
     precioTotalLabel.innerHTML = `Total: ${precio.toFixed(2)} €`;
+    recogerInfoParaRecibo();
 }
 
 export function conmutarCarrito (){
