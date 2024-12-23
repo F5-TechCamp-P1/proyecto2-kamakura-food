@@ -1,4 +1,5 @@
 //Aquí intenta poner las funcionalidades del recibo
+
 //recoger los datos del carrito en el recibo
 let $contenedorRecibo = document.getElementById('receipt-container'); 
 
@@ -42,4 +43,3 @@ function conmutarRecibo(){
 $botonVerRecibo.addEventListener('click', conmutarRecibo);
 
 export {recogerInfoParaRecibo};
-

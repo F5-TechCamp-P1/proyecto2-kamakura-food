@@ -4,7 +4,6 @@ import { recogerInfoParaRecibo } from "./receipt.js";
 
 let $contenedorCarrito = document.getElementById('cart-container');
 let precioTotal = 0;
-
 let precioTotalLabel = document.getElementById("cart-total");
 export function actualizarPrecioTotal(precio) {
     precioTotalLabel.innerHTML = `Total: ${precio.toFixed(2)} €`;
@@ -18,8 +17,6 @@ export function conmutarCarrito (){
       $contenedorCarrito.style.display = "none";
      }
 }
-
-//$botonCarrito.addEventListener('click', conmutarCarrito);
 
 // Añade pedidos de productos al carrito de compras.
 
@@ -46,7 +43,6 @@ function insertarProductoEnCarrito(producto, cantidad){
       $contenedorProductosEnCarrito.append($plantillaProductoEnCarrito);
 
       recogerInfoParaRecibo()
-
 }
 
 function buscarProductoPorId(id) {
