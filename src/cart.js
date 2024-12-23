@@ -2,8 +2,8 @@
 import { products } from "../assets/data/data.js";
 
 let $contenedorCarrito = document.getElementById('cart-container');
-let precioTotal = 0;
 
+let precioTotal = 0;
 let precioTotalLabel = document.getElementById("cart-total");
 export function actualizarPrecioTotal(precio) {
     precioTotalLabel.innerHTML = `Total: ${precio.toFixed(2)} €`;
