@@ -1,12 +1,13 @@
 // DEBE contener las funcionalidades del carrito de compras.
 import { products } from "../assets/data/data.js";
+import { recogerInfoParaRecibo } from "./receipt.js";
 
 let $contenedorCarrito = document.getElementById('cart-container');
 let precioTotal = 0;
-
 let precioTotalLabel = document.getElementById("cart-total");
 export function actualizarPrecioTotal(precio) {
     precioTotalLabel.innerHTML = `Total: ${precio.toFixed(2)} €`;
+    recogerInfoParaRecibo();
 }
 
 export function conmutarCarrito (){
@@ -16,8 +17,6 @@ export function conmutarCarrito (){
       $contenedorCarrito.style.display = "none";
      }
 }
-
-// $botonCarrito.addEventListener('click', conmutarCarrito);
 
 // Añade pedidos de productos al carrito de compras.
 
@@ -43,6 +42,7 @@ function insertarProductoEnCarrito(producto, cantidad){
             </div>`
       $contenedorProductosEnCarrito.append($plantillaProductoEnCarrito);
 
+      recogerInfoParaRecibo()
 }
 
 function buscarProductoPorId(id) {
@@ -89,7 +89,8 @@ document.getElementById("cart-products").addEventListener("click", (evento) => {
             (parseFloat($productoDiv.querySelector(".quantity").textContent)));
 
             actualizarPrecioTotal(precioTotal);
-            $productoDiv.remove(); // Elimina solo este producto
+            $productoDiv.remove();
+            recogerInfoParaRecibo(); // Elimina solo este producto
       }
   });
 
@@ -130,5 +131,3 @@ document.getElementById("cart-products").addEventListener("click", (evento) => {
        let subtotal = cantidadActual * precioOriginal;
        $precioElemento.textContent = `${subtotal.toFixed(2)} €`;
       })
-
-
